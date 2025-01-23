@@ -9,7 +9,6 @@ const RootLayout = () => {
   <GluestackUIProvider>
    <Stack >
     <Stack.Screen name="index" options={{ title: "Shop" }} />
-    <Stack.Screen name="product/[id]" options={{ title: "Product" }} />
    </Stack>
   </GluestackUIProvider>
  )
