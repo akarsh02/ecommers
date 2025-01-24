@@ -14,7 +14,9 @@ import { Stack } from 'expo-router'
 
 const ProductDetails = () => {
  const { id } = useLocalSearchParams()
- const product = products.find((p: any) => p.id == id)
+ console.log(id)
+ const product = products.find((p: any) => p.id === id)
+ console.log(product)
  if (!product) {
   return <Text>Product not found</Text>
  }
