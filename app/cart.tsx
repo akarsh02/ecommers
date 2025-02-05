@@ -5,9 +5,22 @@ import useCart from '@/store/cartStroe'
 import { Box } from '@/components/ui/box'
 import { HStack } from '@/components/ui/hstack'
 import { VStack } from '@/components/ui/vstack'
+import {Button, ButtonText } from '@/components/ui/button'
+import { Redirect } from 'expo-router'
 
 const CartScreen = () => {
  const cartItem = useCart((state:any)=>state.items)
+ const resetCart = useCart((state:any)=>state.resetCart)
+
+
+
+ const onCheckout =() =>{
+   resetCart()
+ }
+
+ if (cartItem.length === 0){
+   return <Redirect href={'/'}/>
+ }
 
  return (
   <>
@@ -23,7 +36,13 @@ const CartScreen = () => {
       </Text>
    
     </HStack>
-   )} />
+   )} 
+    ListFooterComponent={()=>(
+     <Button onPress={onCheckout}>
+      <ButtonText>Checkout</ButtonText>
+     </Button>
+    )}
+   />
 
   </>
  )

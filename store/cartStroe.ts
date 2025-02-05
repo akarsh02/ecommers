@@ -7,7 +7,8 @@ const useCart = create((set) => ({   //create funciton returns hooks(access to d
   addProduct: (product: any) =>
     set((state: any) => ({
       items: [...state.items, {product,quantity:1}]
-    }))
+    })),
+    resetCart:() => set({ items :[]})
 }))
 
 export default useCart
