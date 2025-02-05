@@ -30,8 +30,8 @@ if(error){
 }
 
  const numColumns = useBreakpointValue({
-  default: 3,
-  sm: 3,
+  default: 2,
+  sm: 2,
   xl: 4
 })
  return (

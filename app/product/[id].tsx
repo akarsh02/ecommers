@@ -12,12 +12,22 @@ import { VStack } from '@/components/ui/vstack'
 import { Stack } from 'expo-router'
 import { useQuery } from '@tanstack/react-query'
 import { fetchProductByd } from '@/api/products'
+import useCart from '@/store/cartStroe'
 
 
 const ProductDetails = () => {
  const { id } = useLocalSearchParams()
 
+ const addProduct = useCart((state:any)=>state.addProduct)
+ const cartItem = useCart((state:any)=>state.items)
+
+  console.log(JSON.stringify(cartItem, null, 2))
+
  const {data,isLoading,error} =useQuery({queryKey:['products',id],queryFn:()=>fetchProductByd(Number(id))})
+
+ const addToCart =() =>{
+  addProduct(data)
+ }
 
  // const product = data?.find((p: any) => p.id === id)
  // console.log(product)
@@ -53,7 +63,7 @@ const ProductDetails = () => {
      </Text>
     </VStack>
     <Box className="flex-col sm:flex-row">
-     <Button className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">
+     <Button onPress={addToCart} className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">
       <ButtonText size="sm">Add to cart</ButtonText>
      </Button>
      {/* <Button

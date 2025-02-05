@@ -1,12 +1,30 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { Text,FlatList } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
+import useCart from '@/store/cartStroe'
+import { Box } from '@/components/ui/box'
+import { HStack } from '@/components/ui/hstack'
+import { VStack } from '@/components/ui/vstack'
 
 const CartScreen = () => {
+ const cartItem = useCart((state:any)=>state.items)
+
  return (
   <>
    <Text>Cart </Text>
-   {/* <StatusBar style="auto" /> */}
+   <FlatList data={cartItem} contentContainerClassName='gap-2 max-w-[960px] w-full ' renderItem={({ item }) =>(
+    <HStack className='bg-white p-3'>
+     <VStack>
+     <Text> {item.product.name} </Text>
+     <Text> {item.product.price} </Text>
+     </VStack>
+      <Text>
+      {item.quantity}
+      </Text>
+   
+    </HStack>
+   )} />
+
   </>
  )
 }
